@@ -1,0 +1,117 @@
+<style>
+  @keyframes colorChange {
+    0% {
+      color: #4caf50;
+    }
+    50% {
+      color: #ffc107;
+    }
+    100% {
+      color: #4caf50;
+    }
+  }
+  
+  .navbar-brand {
+    animation: colorChange 2s infinite;
+    font-weight: 700;
+  }
+  
+  .dropdown-toggle::after {
+    content: none;
+  }
+</style>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand fst-italic">FloraTradeHub</a>
+    <a href="{% url 'homepage' %}" class="text-decoration-none">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    {% if user.is_authenticated %}
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown me-5">
+              <a class="text-decoration-none" href="{% url 'add_category' %}" rel="noopener noreferrer">Add Category</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="text-decoration-none" href="{% url 'add_flower' %}" rel="noopener noreferrer">Add Flower</a>
+            </li>
+          </ul>
+        {% endif %}
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          {% if user.is_authenticated and user.user_profile.is_admin %}
+            <li class="nav-item dropdown ms-3 me-3 pt-2">
+              <a class="text-decoration-none" href="{% url 'flower_deshbord_view' %}" rel="noopener noreferrer">Manage Flower Data</a>
+            </li>
+            <li class="nav-item dropdown ms-3 me-3 pt-2">
+              <a class="text-decoration-none" href="{% url 'order_deshbord' %}" rel="noopener noreferrer">Manage Ordery</a>
+            </li>
+          {% else %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-check-fill text-info" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708" />
+                </svg>
+
+                <span class="badge bg-danger" style="idth: 30px;
+                  height: 30px;
+                  padding: 15.2px 7.8px;
+                  font-size: 27px;
+                  border-radius: 26px;
+                  transform: perspective(0px) translate(-12px) rotate(0deg) scale(0.50);
+                  transform-origin: top;
+                  padding-right: 0;
+                  padding-top: 0.3px;
+                  padding-left: 0.3px;
+                  text-align: center;border-width: 48px;
+                ">
+                  {% if total_quantity %}
+                    {{ total_quantity }}
+                  {% else %}
+                    0
+                  {% endif %}
+                </span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end menu-sm mt-2 p-2 shadow">
+                <li class="font-weight-bold text-lg mb-2">{{ total_quantity }} Items</li>
+                <li class="text-info mb-2">Subtotal: $ {{ previous_orders_total_price }}</li>
+                <a class="text-center mb-2 btn btn-primary btn-block" href="{% url 'cart_view' %}">View cart</a>
+              </ul>
+
+            <ul class="dropdown-menu dropdown-menu-end menu-sm mt-2 p-2 shadow">
+              <li class="font-weight-bold text-lg mb-2">8 Items</li>
+              <li class="text-info mb-2">Subtotal: $999</li>
+              <a class="text-center mb-2 btn btn-primary btn-block" href="{% url 'cart_view' %}">View cart</a>
+            </ul>
+          {% endif %}
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Profile Image" class="rounded-circle" width="30" height="30" /></a>
+            <ul class="dropdown-menu dropdown-menu-end menu-sm mt-2 p-2 shadow" aria-labelledby="profileDropdown">
+              <li>
+                <a href="{% url 'user_update' user.id %}" class="text-decoration-none">Profile Update</a>
+              </li>
+              <li>
+                <a class="text-decoration-none" href="{% url 'user_logout' %}">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    {% else %}
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown ms-3 me-3 pt-2">
+            <a class="text-decoration-none" href="{% url 'user_login' %}" rel="noopener noreferrer">Login</a>
+          </li>
+          <li class="nav-item dropdown ms-3 me-3 pt-2">
+            <a class="text-decoration-none" href="{% url 'user_signup' %}" rel="noopener noreferrer">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</div>

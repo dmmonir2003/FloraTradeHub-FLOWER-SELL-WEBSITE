@@ -1,0 +1,18 @@
+<div>
+   
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+         {% for message in messages %}
+         
+             Swal.fire({
+                 title: 'Status',
+                 text: '{{ message }}',
+                 icon: '{{ message.tags }}'
+             });
+         {% endfor %}
+     });
+ </script>
+ 
+ 
+    
+ </div>

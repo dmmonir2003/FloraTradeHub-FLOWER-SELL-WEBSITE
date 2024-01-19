@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+  Add Category
+{% endblock %}
+
+{% block content %}
+  <div class="">
+    <div class="row justify-content-center">
+      <div class="col-md-6 my-5">
+        <h2 class="text-center">Add Category</h2>
+        <form method="post" class="form">
+          {% csrf_token %}
+
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <strong>Error!</strong> Please fix the following issues:<ul>
+                {% for field, error_list in form.errors.items %}
+                  {% for error in error_list %}
+                    <li>{{ field|capfirst }}: {{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          <div class="form-group">
+            <label class="my-2" for="{{ form.category_name.id_for_label }}">Add Category Name</label><br />
+            {{ form.category_name }}
+            {% if form.category_name.errors %}
+              <span class="text-danger">{{ form.category_name.errors.first }}</span>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

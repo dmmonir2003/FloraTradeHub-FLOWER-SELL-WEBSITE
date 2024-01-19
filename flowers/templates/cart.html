@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center my-5">Order List : {{ orders|length }}</h2>
+
+  <table class="table container mx-5">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Flower Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Remove Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <div>
+        {% for order in orders %}
+          <tr>
+            <td class="p-2" scope="row">
+              <img style="height:100px;" class="rounded" src="{{ order.flower.image_url }}" alt="" />
+            </td>
+            <td class="pt-5">{{ order.flower.title }}</td>
+            <td class="pt-5">{{ order.flower.price }}</td>
+            <td class="pt-5">{{ order.status }}</td>
+            <td class="pt-5">
+              <form method="post" action="{% url 'order_remove_to_cart' order.id %}">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">Cancel</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </div>
+    </tbody>
+  </table>
+{% endblock %}
