@@ -58,7 +58,8 @@ def RegistrationView(request):
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             confirm_link = (
-                f"http://127.0.0.1:8000/account/signup/{uid}/{token}"
+                f"https://phi-sdp-final-exam.onrender.com/account/signup/"
+                f"{uid}/{token}"
             )
             user.user_profile.save()
             email_subject = 'Confirm Your Email'
