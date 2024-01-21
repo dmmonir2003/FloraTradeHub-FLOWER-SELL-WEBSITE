@@ -30,9 +30,7 @@
             <td class="pt-5">{{ order.flower.price }}</td>
             <td class="pt-5">{{ order.status }}</td>
             <td class="pt-5">
-              {% if order.status == 'Complete' %}
-                <button class="btn btn-danger custom-disabled" disabled>Cancel</button>
-              {% else %}
+              {% if order.status != 'Complete' %}
                 <form method="post" action="{% url 'order_remove_to_cart' order.id %}">
                   {% csrf_token %}
                   <button class="btn btn-danger" type="submit">Cancel</button>
