@@ -88,7 +88,7 @@
   {% comment %}Card section{% endcomment %}
   <h1 class="text-center fst-italic mt-5">TRENDING now</h1>
   <div class="contaiter-card">
-    {% for flower in all_flowers|slice:':8' %}
+    {% for flower in all_flowers|slice:':10' %}
       <div class="castom-card">
         <div class="imaBx">
           <img src="{{ flower.image_url }}" alt="" />
