@@ -13,6 +13,7 @@ class HomePage(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = FlowerCategories.objects.all()
+        context['all_flowers'] = Flower.objects.all()
         if self.request.user.is_authenticated:
             order_user = self.request.user.user_profile
 
@@ -43,6 +44,8 @@ class CategorySearch(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = FlowerCategories.objects.all()
+        context['all_flowers'] = Flower.objects.all()
+
         if self.request.user.is_authenticated:
             order_user = self.request.user.user_profile
 
