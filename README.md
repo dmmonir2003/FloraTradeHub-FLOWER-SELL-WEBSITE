@@ -19,7 +19,7 @@ This FloraTradeHub (Flower Shop) Management System is a web application built us
 3. Order Management:
    * Users can add flowers to their shopping cart.
    * Users can view their shopping cart, remove items, and confirm orders.
-   * Admin users have access to an order dashboard, where they can view and manage customer orders.
+   * Admin users have access to an order dashboard, and flower management dashboard where they can view and manage customer orders and update flower data.
    * Email notifications are sent to users when they place an order and when their order is confirmed.
 4. Additional Pages
    * Homepage displays available flowers, categorized and with their respective details.
