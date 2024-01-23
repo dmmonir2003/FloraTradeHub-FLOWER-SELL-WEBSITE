@@ -4,7 +4,7 @@ from .forms import FlowerCategoriesForm, FlowerForm
 from django.contrib import messages
 from profiles.models import UserProfile
 from django.views.generic import UpdateView, ListView, DeleteView
-from .models import Flower, OrderHistory
+from .models import Flower, OrderHistory, FlowerCategories
 from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
@@ -81,6 +81,41 @@ def OrderConfirmView(request, order_id):
         email.send()
 
         return redirect('order_deshbord')
+
+
+class CategoryPageView(ListView):
+    template_name = 'category_page_view.html'
+    model = Flower
+    context_object_name = 'flowers'
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        return Flower.objects.filter(category=category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_id = self.kwargs['category_id']
+        category = FlowerCategories.objects.get(id=category_id)
+        context['selected_category'] = category
+        context['categories'] = FlowerCategories.objects.all()
+        context['all_flowers'] = Flower.objects.all()
+
+        if self.request.user.is_authenticated:
+            order_user = self.request.user.user_profile
+
+            total_quantity = OrderHistory.objects.filter(user=order_user).aggregate(
+                Sum('quantity'))['quantity__sum'] or 0
+
+            previous_orders_total_price = OrderHistory.objects.filter(
+                user=order_user).aggregate(Sum('total_price'))['total_price__sum'] or 0
+
+            context["total_quantity"] = total_quantity
+            context["previous_orders_total_price"] = previous_orders_total_price
+        else:
+
+            context["total_quantity"] = 0
+            context["previous_orders_total_price"] = 0
+        return context
 
 
 @login_required(login_url='user_login')

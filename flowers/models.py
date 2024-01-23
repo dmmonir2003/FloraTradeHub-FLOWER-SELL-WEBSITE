@@ -5,6 +5,8 @@ from profiles.models import UserProfile
 
 class FlowerCategories(models.Model):
     category_name = models.CharField(max_length=100)
+    category_description = models.TextField(null=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.category_name

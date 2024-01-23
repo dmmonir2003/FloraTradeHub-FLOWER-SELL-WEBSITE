@@ -5,7 +5,7 @@ from .models import FlowerCategories, Flower
 class FlowerCategoriesForm(forms.ModelForm):
     class Meta:
         model = FlowerCategories
-        fields = ['category_name']
+        fields = ['category_name', 'category_description', 'image_url']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

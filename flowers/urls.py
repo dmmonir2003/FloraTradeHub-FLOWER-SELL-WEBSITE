@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import CreateFlowerCategoryView, CreateFlowerView, AddOrder, CartView, UpdateFlowerView, FlowerDeshbordView, DeleteFlowerView, OrderDeshbordView, OrderConfirmView, RemoveOrderToCart
+from .views import CreateFlowerCategoryView, CreateFlowerView, AddOrder, CartView, UpdateFlowerView, FlowerDeshbordView, DeleteFlowerView, OrderDeshbordView, OrderConfirmView, RemoveOrderToCart, CategoryPageView
 urlpatterns = [
     path('create-category/', CreateFlowerCategoryView.as_view(), name='add_category'),
+    path('category_page/<int:category_id>/', CategoryPageView.as_view(),
+         name='search_category_with_id'),
     path('create-flower/', CreateFlowerView.as_view(), name='add_flower'),
     path('update_flower/<int:pk>/',
          UpdateFlowerView.as_view(), name='update_flower'),
