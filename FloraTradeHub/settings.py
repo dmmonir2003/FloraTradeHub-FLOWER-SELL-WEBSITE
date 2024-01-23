@@ -27,14 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 
-# SECRET_KEY = 'django-insecure-^0b8%(j6-%vtl4z2+gku1+qg($-$w!9-dxz=hk(ptt4j62_0g_'
+SECRET_KEY = 'django-insecure-^0b8%(j6-%vtl4z2+gku1+qg($-$w!9-dxz=hk(ptt4j62_0g_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://phi-sdp-final-exam.onrender.com', 'https://*.127.0.0.1']
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://phi-sdp-final-exam.onrender.com', 'https://*.127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [

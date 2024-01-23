@@ -10,17 +10,24 @@
       color: #4caf50;
     }
   }
-  
-  .navbar-brand {
-    animation: colorChange 2s infinite;
-    font-weight: 700;
-  }
-  
-  .dropdown-toggle::after {
-    content: none;
-  }
-</style>
+    .navbar-brand {
+      animation: colorChange 2s infinite;
+      font-weight: 700;
+    }
 
+    .dropdown-toggle::after {
+      content: none;
+    }
+
+    .navbar-nav li.nav-item:hover > a,
+    .navbar-nav li.nav-item.active > a {
+      color: #ffc107 !important;
+    }
+
+    .navbar-nav li.nav-item.dropdown ul.dropdown-menu li.active > a {
+      color: #ffc107 !important;
+    }
+</style>
 <div class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <img class="rounded-circle me-2" src="https://i.ibb.co/Jp5MYwR/logo-flower-2.jpg" alt="logo-flower-2" border="0" style="width: 50px;">
@@ -28,23 +35,22 @@
   
     
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a href="{% url 'homepage' %}" class="text-decoration-none fst-italic fs-5">Home</a>
+      <li class="nav-item dropdown ">
+        <a href="{% url 'homepage' %}" class="text-decoration-none me-3 text-black fst-italic fs-5">Home</a>
       </li>
+
+
+
+<li class="nav-item dropdown mx-2">
+  <a class="dropdown-toggle text-black  text-decoration-none fst-italic fs-5 me-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+  <ul class="dropdown-menu  text-decoration-none fst-italic fs-5">
+    {% for category in categories %}
+    <li><a class="dropdown-item" href="{% url "search_category_with_id" category.id %}">{{category.category_name}}</a></li>
+    {% endfor %}
+  </ul>
+</li>
       <li class="nav-item dropdown">
-        <ul class=" dropdown-toggle text-decoration-none fst-italic fs-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</ul>
-        <ul class="dropdown-menu text-decoration-none fst-italic fs-5">
-
-          {% for category in categories %}
-          <li><a class="dropdown-item" href="{% url "search_category_with_id" category.id %}">{{category.category_name}}</a></li>
-          {% endfor %}
-
-
-          {% comment %} <li><a class="dropdown-item" href="#">Roses</a></li>
-          <li><a class="dropdown-item" href="#">Orchids</a></li>
-          <li><a class="dropdown-item" href="#">Sunflowers</a></li>
-          <li><a class="dropdown-item" href="#">Mix Bouquets</a></li> {% endcomment %}
-        </ul>
+        <a href="{% url 'show_about_us' %}" class="text-decoration-none fst-italic text-black fs-5">About Us</a>
       </li>
     </ul>
     
@@ -55,10 +61,10 @@
         {% if user.is_authenticated %}
           <ul class="navbar-nav">
             <li class="nav-item dropdown me-5">
-              <a class="text-decoration-none text-decoration-none fst-italic fs-5" href="{% url 'add_category' %}" rel="noopener noreferrer">Add Category</a>
+              <a class="text-decoration-none text-decoration-none text-black fst-italic fs-5" href="{% url 'add_category' %}" rel="noopener noreferrer">Add Category</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="text-decoration-none text-decoration-none fst-italic fs-5" href="{% url 'add_flower' %}" rel="noopener noreferrer">Add Flower</a>
+              <a class="text-decoration-none text-decoration-none text-black fst-italic fs-5" href="{% url 'add_flower' %}" rel="noopener noreferrer">Add Flower</a>
             </li>
           </ul>
         {% endif %}
@@ -67,28 +73,29 @@
         <ul class="navbar-nav">
           {% if user.is_authenticated and user.user_profile.is_admin %}
             <li class="nav-item dropdown ms-3 me-3 pt-2">
-              <a class="text-decoration-none text-decoration-none fst-italic fs-5" href="{% url 'flower_deshbord_view' %}" rel="noopener noreferrer">Manage Flower Data</a>
+              <a class="text-decoration-none  text-black fst-italic fs-5" href="{% url 'flower_deshbord_view' %}" rel="noopener noreferrer">Manage Flower Data</a>
             </li>
             <li class="nav-item dropdown ms-3 me-3 pt-2">
-              <a class="text-decoration-none text-decoration-none fst-italic fs-5" href="{% url 'order_deshbord' %}" rel="noopener noreferrer">Manage Ordery</a>
+              <a class="text-decoration-none text-black  fst-italic fs-5" href="{% url 'order_deshbord' %}" rel="noopener noreferrer">Manage Ordery</a>
             </li>
           {% else %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-check-fill text-info" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart-check-fill " viewBox="0 0 16 16">
                   <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708" />
                 </svg>
 
-                <span class="badge bg-danger" style="idth: 30px;
+                <span class="badge" style="width: 30px;
                   height: 30px;
-                  padding: 15.2px 7.8px;
+                  background-color: rgb(145, 109, 5) ;
+                  padding: 20.2px 15px;
                   font-size: 27px;
                   border-radius: 26px;
                   transform: perspective(0px) translate(-12px) rotate(0deg) scale(0.50);
                   transform-origin: top;
                   padding-right: 0;
-                  padding-top: 0.3px;
-                  padding-left: 0.3px;
+                  padding-top: 0.5px;
+                  padding-left: 0.5px;
                   text-align: center;border-width: 48px;
                 ">
                   {% if total_quantity %}
@@ -113,12 +120,12 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Profile Image" class="rounded-circle" width="30" height="30" /></a>
-            <ul class="dropdown-menu dropdown-menu-end menu-sm mt-2 p-2 shadow" aria-labelledby="profileDropdown">
-              <li>
-                <a href="{% url 'user_update' user.id %}" class="text-decoration-none">Profile Update</a>
+            <ul class="dropdown-menu dropdown-menu-end menu-sm mt-2 p-4 shadow" aria-labelledby="profileDropdown">
+              <li class="mb-3">
+                <a href="{% url 'user_update' user.id %}" class="text-decoration-none text-black fst-italic ">Profile Update</a>
               </li>
               <li>
-                <a class="text-decoration-none" href="{% url 'user_logout' %}">Logout</a>
+                <a class="text-decoration-none castom-btn" href="{% url 'user_logout' %}">Logout</a>
               </li>
             </ul>
           </li>
@@ -128,10 +135,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav text-decoration-none fst-italic fs-5">
           <li class="nav-item dropdown ms-3 me-3 pt-2">
-            <a class="text-decoration-none" href="{% url 'user_login' %}" rel="noopener noreferrer">Login</a>
+            <a class="text-decoration-none castom-btn" href="{% url 'user_login' %}" rel="noopener noreferrer">Login</a>
           </li>
           <li class="nav-item dropdown ms-3 me-3 pt-2">
-            <a class="text-decoration-none" href="{% url 'user_signup' %}" rel="noopener noreferrer">Sign Up</a>
+            <a class="text-decoration-none castom-btn" href="{% url 'user_signup' %}" rel="noopener noreferrer">Sign Up</a>
           </li>
         </ul>
       </div>

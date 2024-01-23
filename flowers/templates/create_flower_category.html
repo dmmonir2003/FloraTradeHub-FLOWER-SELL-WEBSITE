@@ -6,9 +6,12 @@
 
 {% block content %}
   <div class="">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mx-auto">
+      <div class="col-md-6">
+        <img class="w-100" src="https://img.freepik.com/free-vector/order-tracking-program-convenient-service-shopping-list-basket-content-purchase-package-mobile-software-smartphone-application_335657-1168.jpg?size=626&ext=jpg&ga=GA1.1.274104559.1692125061&semt=ais" alt="" />
+      </div>
       <div class="col-md-6 my-5">
-        <h2 class="text-center">Add Category</h2>
+        <h2 class="">Add Category</h2>
         <form method="post" class="form">
           {% csrf_token %}
 
@@ -45,7 +48,7 @@
               <span class="text-danger">{{ form.category_description.errors.first }}</span>
             {% endif %}
           </div>
-          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          <button type="submit" class="castom-btn mt-3">Submit</button>
         </form>
       </div>
     </div>

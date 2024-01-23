@@ -3,7 +3,7 @@ from django.views import View
 from .forms import FlowerCategoriesForm, FlowerForm
 from django.contrib import messages
 from profiles.models import UserProfile
-from django.views.generic import UpdateView, ListView, DeleteView
+from django.views.generic import UpdateView, ListView, DeleteView, TemplateView
 from .models import Flower, OrderHistory, FlowerCategories
 from django.urls import reverse_lazy
 from django.db.models import Sum
@@ -100,6 +100,31 @@ class CategoryPageView(ListView):
         context['categories'] = FlowerCategories.objects.all()
         context['all_flowers'] = Flower.objects.all()
 
+        if self.request.user.is_authenticated:
+            order_user = self.request.user.user_profile
+
+            total_quantity = OrderHistory.objects.filter(user=order_user).aggregate(
+                Sum('quantity'))['quantity__sum'] or 0
+
+            previous_orders_total_price = OrderHistory.objects.filter(
+                user=order_user).aggregate(Sum('total_price'))['total_price__sum'] or 0
+
+            context["total_quantity"] = total_quantity
+            context["previous_orders_total_price"] = previous_orders_total_price
+        else:
+
+            context["total_quantity"] = 0
+            context["previous_orders_total_price"] = 0
+        return context
+
+
+class AboutPageView(TemplateView):
+    template_name = 'about_us.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = FlowerCategories.objects.all()
+        context['all_flowers'] = Flower.objects.all()
         if self.request.user.is_authenticated:
             order_user = self.request.user.user_profile
 

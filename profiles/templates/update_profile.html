@@ -5,9 +5,12 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mx-auto">
+    <div class="col-md-6">
+      <img class="w-100" src="https://i.ibb.co/s3nM8XZ/Update-rafiki.png" alt="Update-rafiki" border="0" />
+    </div>
     <div class="col-md-6 my-5">
-      <h2 class="text-center">Update Your Profile !!!</h2>
+      <h2 class="">Update Your Profile !!!</h2>
 
       <form method="post" class="form">
         {% csrf_token %}
@@ -60,7 +63,7 @@
           {{ form.is_admin }}
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <button type="submit" class="castom-btn mt-3">Submit</button>
       </form>
     </div>
   </div>

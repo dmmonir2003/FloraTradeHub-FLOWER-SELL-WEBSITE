@@ -6,9 +6,12 @@
 
 {% block content %}
   <div class="">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mx-auto align-items-center">
+      <div class="col-md-6">
+        <img class="rounded" src="https://img.freepik.com/free-photo/woman-making-pretty-floral-arrangement_23-2148846540.jpg?size=626&ext=jpg&ga=GA1.1.274104559.1692125061&semt=sph" style="margin-left: 120px;" alt="" />
+      </div>
       <div class="col-md-6 my-5">
-        <h2 class="text-center">Add Flower</h2>
+        <h2 class="">Add Flower</h2>
         <form method="post" class="form">
           {% csrf_token %}
 
@@ -67,7 +70,7 @@
             {% endif %}
           </div>
 
-          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          <button type="submit" class="castom-btn mt-3">Submit</button>
         </form>
       </div>
     </div>

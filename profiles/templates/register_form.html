@@ -5,9 +5,17 @@
 {% endblock %}
 
 {% block content %}
-  <div class="row justify-content-center">
+  <style>
+    .form-group input:focus {
+      border: 5px solid rgb(145, 109, 5);
+    }
+  </style>
+  <div class="row justify-content-center mx-auto">
+    <div class="col-md-6">
+      <img class="w-100" src="https://i.ibb.co/HNfVbBX/Sign-up-amico.png" alt="Sign-up-amico" border="0" />
+    </div>
     <div class="col-md-6 my-5">
-      <h2 class="text-center">Please Register !!!</h2>
+      <h2 class="">Please Register !!!</h2>
 
       <form method="post" class="form">
         {% csrf_token %}
@@ -76,7 +84,7 @@
           {{ form.is_admin }}
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        <button type="submit" class="castom-btn mt-3">Submit</button>
       </form>
     </div>
   </div>

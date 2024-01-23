@@ -48,7 +48,6 @@ class CustomUserCreationForm(UserCreationForm):
                         ' py-3 px-4'
                         ' focus:outline-none'
                         ' focus:bg-white'
-                        ' focus:border-secondary'
                         'w-50'
 
                     )
@@ -86,7 +85,7 @@ class CustomUserUpdateForm(UserChangeForm):
                         ' py-3 px-4'
                         ' focus:outline-none'
                         ' focus:bg-white'
-                        ' focus:border-secondary'
+
                         'w-50'
 
                     )
@@ -107,7 +106,7 @@ class CustomLoginForm(AuthenticationForm):
                     ' py-3 px-4'
                     ' focus:outline-none'
                     ' focus:bg-white'
-                    ' focus:border-secondary'
+
                     ' w-75'
                 )
             })

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CreateFlowerCategoryView, CreateFlowerView, AddOrder, CartView, UpdateFlowerView, FlowerDeshbordView, DeleteFlowerView, OrderDeshbordView, OrderConfirmView, RemoveOrderToCart, CategoryPageView
+from .views import CreateFlowerCategoryView, CreateFlowerView, AddOrder, CartView, UpdateFlowerView, FlowerDeshbordView, DeleteFlowerView, OrderDeshbordView, OrderConfirmView, RemoveOrderToCart, CategoryPageView, AboutPageView
 urlpatterns = [
     path('create-category/', CreateFlowerCategoryView.as_view(), name='add_category'),
     path('category_page/<int:category_id>/', CategoryPageView.as_view(),
@@ -20,5 +20,8 @@ urlpatterns = [
          name='order_confirm'),
     path('order_remove_to_cart/<int:order_id>/', RemoveOrderToCart,
          name='order_remove_to_cart'),
+    path('show_about_us/', AboutPageView.as_view(),
+         name='show_about_us'),
+
 
 ]
