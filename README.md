@@ -30,3 +30,6 @@ This FloraTradeHub (Flower Shop) Management System is a web application built us
   * HTML, CSS: Front-end styling
   * Bootstrap: Front-end framework
   * SQLite: Database
+  * Deploy: Onrender
+# project live link
+https://phi-sdp-final-exam.onrender.com
