@@ -33,10 +33,10 @@
               {% if order.status != 'Completed' %}
                 <form method="post" action="{% url 'order_remove_to_cart' order.id %}">
                   {% csrf_token %}
-                  <button class="castom-btn" type="submit">Cancel</button>
+                  <button class="castom-btn" type="submit">Remove Cart</button>
                 </form>
               {% else %}
-                <button class="castom-btn disabled" disabled>Cancel</button>
+                <button class="castom-btn disabled" disabled>Order Confirm</button>
               {% endif %}
             </td>
           </tr>

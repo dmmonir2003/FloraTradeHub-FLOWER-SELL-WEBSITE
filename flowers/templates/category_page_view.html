@@ -8,6 +8,10 @@
     .custom-border {
       border: 1px solid rgb(145, 109, 5);
     }
+    .hover-effect:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
   </style>
   <div class="container-fluid">
     <h6 class="my-4">{{ selected_category.category_name }}</h6>
@@ -24,7 +28,7 @@
         <hr />
 
         {% for category in categories %}
-          <a class="dropdown-item text-decoration-none fst-italic fs-5" href="{% url 'search_category_with_id' category.id %}">{{ category.category_name }}</a>
+          <a class="dropdown-item text-decoration-none fst-italic fs-5 mb-2" href="{% url 'search_category_with_id' category.id %}">{{ category.category_name }}</a>
         {% endfor %}
       </div>
       <div class="col-md-8">
