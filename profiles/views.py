@@ -38,15 +38,11 @@ class UserLoginView(LoginView):
         return reverse_lazy('homepage')
 
 
-class UserLogOutView(LoginRequiredMixin, LogoutView):
-    template_name = 'index.html'
-
-    def get_success_url(self):
-        if self.request.user.is_authenticated:
-            logout(self.request)
-
-            return reverse_lazy('homepage')
-        return reverse_lazy('homepage')
+@login_required(login_url='login')
+def user_logout(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return redirect(reverse_lazy('homepage'))
 
 
 def RegistrationView(request):

@@ -30,7 +30,7 @@
               <form method="post" action="{% url 'order_confirm' order.id %}">
                 {% csrf_token %}
                 {% if order.status == 'Pending' %}
-                  <button type="submit" class="btn btn-danger">Confirm</button>
+                  <button type="submit" class="castom-btn">Confirm</button>
                 {% else %}
                   <button type="submit" class="castom-btn">Confirmed</button>
                 {% endif %}

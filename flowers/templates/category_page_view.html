@@ -1,12 +1,47 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-4">
-      <img class="p-5" src="{{ selected_category.image_url }}" alt="" />
+  <style>
+    hr {
+      border: 2px solid rgb(38, 28, 3);
+    }
+    .custom-border {
+      border: 1px solid rgb(145, 109, 5);
+    }
+  </style>
+  <div class="container">
+    <h6 class="my-4">{{ selected_category.category_name }}</h6>
+    <h4>{{ selected_category.category_name }} IN BIRMINGHAM B29</h4>
+
+    <div class="mt-5">
+      <hr class="mb-0" />
+      <p>{{ selected_category.category_description }}</p>
+      <hr class="custom-border" />
     </div>
-    <div class="col-6">
-      <h2>{{ selected_category.category_name }}</h2>
+    <div class="row g-2">
+      <div class="col-md-4">
+        <h4>Shop by:</h4>
+        <hr />
+
+        {% for category in categories %}
+          <a class="dropdown-item text-decoration-none fst-italic fs-5" href="{% url 'search_category_with_id' category.id %}">{{ category.category_name }}</a>
+        {% endfor %}
+      </div>
+      <div class="col-md-8">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for flower in flowers %}
+            <div class="col mb-3">
+              <div class="" style="width: 18rem; height: 300px; position: relative; background: url('{{ flower.image_url }}') center/cover;">
+                <div class="card-img-overlay d-flex flex-column justify-content-center text-center align-items-center" style="background-color: rgba(0, 0, 0, 0.5); transition: background-color 0.3s ease;">
+                  <h6 class="card-text text-white p-1">{{ flower.title }}</h6>
+                  <h5 class="card-text text-white">$ {{ flower.price }}</h5>
+                  <a class="castom-btn w-50" href="{% url 'add_order' flower.id %}">Order Now</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}

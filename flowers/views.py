@@ -98,7 +98,7 @@ class CategoryPageView(ListView):
         category = FlowerCategories.objects.get(id=category_id)
         context['selected_category'] = category
         context['categories'] = FlowerCategories.objects.all()
-        context['all_flowers'] = Flower.objects.all()
+        context['all_flowers'] = Flower.objects.filter()
 
         if self.request.user.is_authenticated:
             order_user = self.request.user.user_profile
