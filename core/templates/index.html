@@ -148,7 +148,7 @@
     <hr />
     <div class="category-container">
       <div class="row mt-5">
-        <div class="col-4">
+        <div class="col-md-4">
           {% for category in categories|slice:':1' %}
             <div class="category-div mb-3 position-relative">
               <img class="rounded category-image" src="{{ category.image_url }}" alt="" style="height: 500px;" />
@@ -157,9 +157,9 @@
           {% endfor %}
         </div>
 
-        <div class="col-8">
+        <div class="col-md-8">
           <div class="row">
-            <div class="col-6 position-relative">
+            <div class="col-md-6 position-relative">
               {% for category in categories|slice:'1:2' %}
                 <div class="category-div mb-3 position-relative">
                   <img class="rounded category-image" src="{{ category.image_url }}" alt="" style="height: 250px;" />
@@ -167,7 +167,7 @@
                 </div>
               {% endfor %}
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
               {% for category in categories|slice:'2:3' %}
                 <div class="category-div mb-3 position-relative">
                   <img class="category-image rounded" src="{{ category.image_url }}" alt="" style="height: 250px;" />
@@ -175,7 +175,7 @@
                 </div>
               {% endfor %}
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
               {% for category in categories|slice:'3:4' %}
                 <div class="category-div mb-3 position-relative">
                   <img class="category-image rounded" src="{{ category.image_url }}" alt="" style="height: 250px;" />
@@ -183,7 +183,7 @@
                 </div>
               {% endfor %}
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
               {% for category in categories|slice:'4:5' %}
                 <div class="category-div mb-3 position-relative">
                   <img class="category-image rounded" src="{{ category.image_url }}" alt="" style="height: 250px;" />
